@@ -8,10 +8,13 @@
 import Foundation
 import UIKit
 
-final class MainCoordinator: MenuModuleOutput {
+final class MainCoordinator: MenuModuleOutput, GameModuleOutput, HowToPlayModuleOutput, StoreModuleOutput{
     let window: UIWindow
     var navigationController: UINavigationController
     let menuModule = MenuModule()
+    let gameModule = GameModule()
+    let howToPlayModule = HowToPlayModule()
+    let storeModule = StoreModule()
     
     init(window: UIWindow) {
         self.window = window
@@ -21,7 +24,14 @@ final class MainCoordinator: MenuModuleOutput {
     
     func start() {
         menuModule.output = self
+        gameModule.output = self
+        howToPlayModule.output = self
+        storeModule.output = self
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
+    }
+    
+    func showGameScreen() {
+        navigationController.pushViewController(gameModule.viewController, animated: true)
     }
 }

@@ -12,7 +12,7 @@ protocol MenuModuleInput: AnyObject {
 }
 
 protocol MenuModuleOutput: AnyObject {
-
+    func showGameScreen()
 }
 
 final class MenuModule {
