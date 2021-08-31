@@ -36,6 +36,17 @@ final class GamePresenter {
 }
 
 extension GamePresenter: GameViewOutput {
+    func getHelpLetter() -> String {
+        var letter: String = state.answer.getSymbol(byIndex: state.currentAnswer.count)
+        for number in 0..<state.currentAnswer.count {
+            if state.answer.getSymbol(byIndex: number) != state.currentAnswer.getSymbol(byIndex: number) {
+                letter = state.answer.getSymbol(byIndex: number)
+                break
+            }
+        }
+        return letter
+    }
+
     func removeLetter() {
         guard state.currentAnswer.count != 0 else {
             return
@@ -67,4 +78,9 @@ extension GamePresenter: GameViewOutput {
 }
 
 extension GamePresenter: GameModuleInput {
+}
+extension String {
+    func getSymbol(byIndex index: Int) -> String {
+        String(self[self.index(self.startIndex, offsetBy: index)])
+    }
 }

@@ -14,6 +14,7 @@ protocol GameViewOutput {
     func viewDidLoad()
     func moveLetter(letter: String) -> Bool
     func removeLetter()
+    func getHelpLetter() -> String
 }
 
 final class GameViewController: UIViewController {
@@ -31,6 +32,11 @@ final class GameViewController: UIViewController {
         static let letterButtonsInsetBot: CGFloat = 10
         static let answerButtonsInsetBetweenButtons: CGFloat = 10
         static let answerButtonsSize: CGSize = .init(width: 40, height: 40)
+        static let helpHeaderLabelInsetTop: CGFloat = 10
+        static let helpLabelInsetTop: CGFloat = 20
+        static let helpButtonInsets: UIEdgeInsets = .init(top: 50, left: 10, bottom: 10, right: 10)
+        static let helpButtonSize: CGSize = .init(width: 250, height: 60)
+        static let helpViewHeight: CGFloat = 170
     }
     private var bottomLetterButtons: [UIButton] = []
     private var topLetterButtons: [UIButton] = []
@@ -40,7 +46,7 @@ final class GameViewController: UIViewController {
     var letters = ""
     var answerCount = 0
 
-// MARK: - Subviews
+    // MARK: - Subviews
 
     private let backgroundImage: UIImageView = {
         let image = UIImageView()
@@ -92,12 +98,41 @@ final class GameViewController: UIViewController {
         let button = UIButton()
         let image = UIImage(named: "returnButton")
         button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(tapQuestionButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tapArrowButton), for: .touchUpInside)
         return button
     }()
     private let answerView = UIView()
+    private let helpView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .darkGray
+        view.isHidden = true
+        view.layer.cornerRadius = 5
+        return view
+    }()
+    private let helpHeaderLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Help"
+        label.textColor = .white
+        label.font = UIFont(name: "Oswald Regular", size: 20)
+        return label
+    }()
+    private let helpLabel: UILabel = {
+        let label = UILabel()
+        label.text = "?"
+        label.textColor = .white
+        label.font = UIFont(name: "Oswald Regular", size: 20)
+        return label
+    }()
+    private let helpButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "levelComplite")
+        button.setTitle("OK", for: .normal)
+        button.setBackgroundImage(image, for: .normal)
+        button.addTarget(self, action: #selector(hideHelp), for: .touchUpInside)
+        return button
+    }()
 
-// MARK: - Lifecycle
+    // MARK: - Lifecycle
 
     init(output: GameViewOutput) {
         self.output = output
@@ -112,6 +147,7 @@ final class GameViewController: UIViewController {
         super.viewDidLoad()
         output.viewDidLoad()
         letters += "?"
+        helpView.add(helpLabel, helpHeaderLabel, helpButton)
         view.add(backgroundImage,
                  headerImage,
                  backButton,
@@ -121,7 +157,8 @@ final class GameViewController: UIViewController {
                  backgroundAnswerImage,
                  taskLabel,
                  returnLetterButton,
-                 answerView)
+                 answerView,
+                 helpView)
         createLetterButtons()
         for _ in 0..<answerCount {
             let button = UIButton()
@@ -134,7 +171,7 @@ final class GameViewController: UIViewController {
         }
     }
 
-// MARK: - Layout
+    // MARK: - Layout
 
     override func viewDidLayoutSubviews() {
         backgroundImage.configureFrame { maker in
@@ -174,8 +211,31 @@ final class GameViewController: UIViewController {
         }
         layoutLetterButtons()
         layoutAnswerField()
+        layoutHelpField()
     }
-
+    private func layoutHelpField() {
+        let width = Constants.helpButtonSize.width + Constants.helpButtonInsets.left + Constants.helpButtonInsets.right
+        helpView.configureFrame { maker in
+            maker.center()
+                .size(width: width, height: Constants.helpViewHeight)
+        }
+        helpHeaderLabel.configureFrame { maker in
+            maker.centerX()
+                .sizeToFit()
+                .top(inset: Constants.helpHeaderLabelInsetTop)
+        }
+        helpLabel.configureFrame { maker in
+            maker.centerX()
+                .sizeToFit()
+                .top(to: helpHeaderLabel.nui_bottom, inset: Constants.helpLabelInsetTop)
+        }
+        helpButton.configureFrame { maker in
+            maker.size(Constants.helpButtonSize)
+                .bottom(inset: Constants.helpButtonInsets.bottom)
+                .right(inset: Constants.helpButtonInsets.right)
+                .left(inset: Constants.helpButtonInsets.left)
+        }
+    }
     private func layoutLetterButtons() {
         for (number, button) in bottomLetterButtons.enumerated() {
             button.configureFrame { maker in
@@ -240,7 +300,7 @@ final class GameViewController: UIViewController {
         }
     }
 
-// MARK: - Actions
+    // MARK: - Actions
 
     private func createLetterButtons() {
         for _ in 0...6 {
@@ -261,9 +321,11 @@ final class GameViewController: UIViewController {
             button.setTitle(String(letters.first ?? "A"), for: .normal)
             letters.removeFirst()
             button.setTitleColor(.black, for: .normal)
-            button.addTarget(self, action: #selector(tapLetterButton), for: .touchUpInside)
             if number == 7 {
-                // button.addTarget(self, action: #selector(tapQuestionButton), for: .touchUpInside)
+                button.addTarget(self, action: #selector(tapQuestionButton), for: .touchUpInside)
+            }
+            else {
+                button.addTarget(self, action: #selector(tapLetterButton), for: .touchUpInside)
             }
             view.add(button)
             topLetterButtons.append(button)
@@ -273,19 +335,26 @@ final class GameViewController: UIViewController {
         output.showMenuScreen()
     }
     @objc private func tapLetterButton(sender: UIButton!) {
-        guard let letter = sender.title(for: .normal) else {
+        guard let letter = sender.title(for: .normal), hiddenButtons.count != answerCount else {
             return
         }
         sender.isHidden = output.moveLetter(letter: letter)
         hiddenButtons.append(sender)
 
     }
-    @objc private func tapQuestionButton() {
+    @objc private func tapArrowButton() {
         guard !hiddenButtons.isEmpty else {
             return
         }
         output.removeLetter()
         hiddenButtons.last?.isHidden = false
         hiddenButtons.removeLast()
+    }
+    @objc private func tapQuestionButton() {
+        helpView.isHidden = false
+        helpLabel.text = output.getHelpLetter()
+    }
+    @objc private func hideHelp() {
+        helpView.isHidden = true
     }
 }
