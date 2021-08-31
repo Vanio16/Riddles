@@ -1,6 +1,6 @@
 //
-//  NewCollectionState.swift
-//  City
+//  MenuState.swift
+//  Riddles
 //
 //  Created by Ivan Zakharov on 23/8/21.
 //

@@ -17,7 +17,17 @@ final class MenuPresenter {
 }
 
 extension MenuPresenter: MenuViewOutput {
+    func showGameScreen() {
+        output?.menuModuleGameModuleShow(self)
+    }
 
+    func showHowToPlayScreen() {
+        output?.menuModuleHowToPlayModuleShow(self)
+    }
+
+    func showStoreScreen() {
+        output?.menuModuleStoreModuleShow(self)
+    }
 }
 
 extension MenuPresenter: MenuModuleInput {

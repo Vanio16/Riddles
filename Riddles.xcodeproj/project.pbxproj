@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9746916D26DCB35000FB66BF /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9746916C26DCB31D00FB66BF /* Oswald-Regular.ttf */; };
 		979CFF4C26D8992A00D9F63C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979CFF4B26D8992A00D9F63C /* AppDelegate.swift */; };
 		979CFF4E26D8992A00D9F63C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979CFF4D26D8992A00D9F63C /* SceneDelegate.swift */; };
-		979CFF5026D8992A00D9F63C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979CFF4F26D8992A00D9F63C /* ViewController.swift */; };
 		979CFF5526D8992D00D9F63C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 979CFF5426D8992D00D9F63C /* Assets.xcassets */; };
 		979CFF5826D8992D00D9F63C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 979CFF5626D8992D00D9F63C /* LaunchScreen.storyboard */; };
 		979CFF6126D89CCF00D9F63C /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979CFF6026D89CCF00D9F63C /* MainCoordinator.swift */; };
@@ -18,13 +18,27 @@
 		979CFF6A26D8A87100D9F63C /* MenuModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979CFF6626D8A87100D9F63C /* MenuModule.swift */; };
 		979CFF6B26D8A87100D9F63C /* MenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979CFF6726D8A87100D9F63C /* MenuPresenter.swift */; };
 		979CFF6F26D8A9FE00D9F63C /* Framezilla.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 979CFF6E26D8A9FE00D9F63C /* Framezilla.xcframework */; };
+		97AF795C26D8BF4B0048BBA2 /* UIView+Sugar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF795B26D8BF4B0048BBA2 /* UIView+Sugar.swift */; };
+		97AF796226D8E9640048BBA2 /* GameModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF796126D8E9640048BBA2 /* GameModule.swift */; };
+		97AF796426D8E9730048BBA2 /* GamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF796326D8E9730048BBA2 /* GamePresenter.swift */; };
+		97AF796626D8E97F0048BBA2 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF796526D8E97F0048BBA2 /* GameState.swift */; };
+		97AF796826D8E98C0048BBA2 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF796726D8E98C0048BBA2 /* GameViewController.swift */; };
+		97AF796A26D8E9A20048BBA2 /* HowToPlayModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF796926D8E9A20048BBA2 /* HowToPlayModule.swift */; };
+		97AF796C26D8E9B30048BBA2 /* HowToPlayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF796B26D8E9B30048BBA2 /* HowToPlayPresenter.swift */; };
+		97AF796E26D8E9C30048BBA2 /* HowToPlayState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF796D26D8E9C30048BBA2 /* HowToPlayState.swift */; };
+		97AF797026D8E9D40048BBA2 /* HowToPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF796F26D8E9D40048BBA2 /* HowToPlayViewController.swift */; };
+		97AF797226D8E9E40048BBA2 /* StoreModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF797126D8E9E40048BBA2 /* StoreModule.swift */; };
+		97AF797426D8E9F40048BBA2 /* StorePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF797326D8E9F40048BBA2 /* StorePresenter.swift */; };
+		97AF797626D8EA050048BBA2 /* StoreState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF797526D8EA050048BBA2 /* StoreState.swift */; };
+		97AF797826D8EA130048BBA2 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF797726D8EA130048BBA2 /* StoreViewController.swift */; };
+		97AF797926D8F03D0048BBA2 /* Botanica.otf in Resources */ = {isa = PBXBuildFile; fileRef = 97AF795D26D8E07D0048BBA2 /* Botanica.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9746916C26DCB31D00FB66BF /* Oswald-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Regular.ttf"; sourceTree = "<group>"; };
 		979CFF4826D8992A00D9F63C /* Riddles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Riddles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		979CFF4B26D8992A00D9F63C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		979CFF4D26D8992A00D9F63C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		979CFF4F26D8992A00D9F63C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		979CFF5426D8992D00D9F63C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		979CFF5726D8992D00D9F63C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		979CFF5926D8992D00D9F63C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -34,6 +48,20 @@
 		979CFF6626D8A87100D9F63C /* MenuModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuModule.swift; sourceTree = "<group>"; };
 		979CFF6726D8A87100D9F63C /* MenuPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
 		979CFF6E26D8A9FE00D9F63C /* Framezilla.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Framezilla.xcframework; path = Carthage/Build/Framezilla.xcframework; sourceTree = "<group>"; };
+		97AF795B26D8BF4B0048BBA2 /* UIView+Sugar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Sugar.swift"; sourceTree = "<group>"; };
+		97AF795D26D8E07D0048BBA2 /* Botanica.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Botanica.otf; sourceTree = "<group>"; };
+		97AF796126D8E9640048BBA2 /* GameModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModule.swift; sourceTree = "<group>"; };
+		97AF796326D8E9730048BBA2 /* GamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePresenter.swift; sourceTree = "<group>"; };
+		97AF796526D8E97F0048BBA2 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		97AF796726D8E98C0048BBA2 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		97AF796926D8E9A20048BBA2 /* HowToPlayModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayModule.swift; sourceTree = "<group>"; };
+		97AF796B26D8E9B30048BBA2 /* HowToPlayPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayPresenter.swift; sourceTree = "<group>"; };
+		97AF796D26D8E9C30048BBA2 /* HowToPlayState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayState.swift; sourceTree = "<group>"; };
+		97AF796F26D8E9D40048BBA2 /* HowToPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayViewController.swift; sourceTree = "<group>"; };
+		97AF797126D8E9E40048BBA2 /* StoreModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModule.swift; sourceTree = "<group>"; };
+		97AF797326D8E9F40048BBA2 /* StorePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorePresenter.swift; sourceTree = "<group>"; };
+		97AF797526D8EA050048BBA2 /* StoreState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreState.swift; sourceTree = "<group>"; };
+		97AF797726D8EA130048BBA2 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,11 +96,13 @@
 		979CFF4A26D8992A00D9F63C /* Riddles */ = {
 			isa = PBXGroup;
 			children = (
-				979CFF6226D89F6E00D9F63C /* ViewControllers */,
+				97AF795A26D8BF080048BBA2 /* Extensions */,
+				979CFF6226D89F6E00D9F63C /* Modules */,
 				979CFF5F26D89C8500D9F63C /* Coordinators */,
 				979CFF4B26D8992A00D9F63C /* AppDelegate.swift */,
+				97AF795D26D8E07D0048BBA2 /* Botanica.otf */,
+				9746916C26DCB31D00FB66BF /* Oswald-Regular.ttf */,
 				979CFF4D26D8992A00D9F63C /* SceneDelegate.swift */,
-				979CFF4F26D8992A00D9F63C /* ViewController.swift */,
 				979CFF5426D8992D00D9F63C /* Assets.xcassets */,
 				979CFF5626D8992D00D9F63C /* LaunchScreen.storyboard */,
 				979CFF5926D8992D00D9F63C /* Info.plist */,
@@ -88,15 +118,18 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
-		979CFF6226D89F6E00D9F63C /* ViewControllers */ = {
+		979CFF6226D89F6E00D9F63C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				979CFF6326D8A83500D9F63C /* MenuViewController */,
+				97AF796026D8E9230048BBA2 /* StoreViewModule */,
+				97AF795F26D8E9120048BBA2 /* HowToPlayModule */,
+				97AF795E26D8E8F20048BBA2 /* GameModule */,
+				979CFF6326D8A83500D9F63C /* MenuModule */,
 			);
-			path = ViewControllers;
+			path = Modules;
 			sourceTree = "<group>";
 		};
-		979CFF6326D8A83500D9F63C /* MenuViewController */ = {
+		979CFF6326D8A83500D9F63C /* MenuModule */ = {
 			isa = PBXGroup;
 			children = (
 				979CFF6626D8A87100D9F63C /* MenuModule.swift */,
@@ -104,7 +137,7 @@
 				979CFF6426D8A87100D9F63C /* MenuState.swift */,
 				979CFF6526D8A87100D9F63C /* MenuViewController.swift */,
 			);
-			path = MenuViewController;
+			path = MenuModule;
 			sourceTree = "<group>";
 		};
 		979CFF6D26D8A9FE00D9F63C /* Frameworks */ = {
@@ -113,6 +146,47 @@
 				979CFF6E26D8A9FE00D9F63C /* Framezilla.xcframework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		97AF795A26D8BF080048BBA2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				97AF795B26D8BF4B0048BBA2 /* UIView+Sugar.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		97AF795E26D8E8F20048BBA2 /* GameModule */ = {
+			isa = PBXGroup;
+			children = (
+				97AF796126D8E9640048BBA2 /* GameModule.swift */,
+				97AF796326D8E9730048BBA2 /* GamePresenter.swift */,
+				97AF796526D8E97F0048BBA2 /* GameState.swift */,
+				97AF796726D8E98C0048BBA2 /* GameViewController.swift */,
+			);
+			path = GameModule;
+			sourceTree = "<group>";
+		};
+		97AF795F26D8E9120048BBA2 /* HowToPlayModule */ = {
+			isa = PBXGroup;
+			children = (
+				97AF796926D8E9A20048BBA2 /* HowToPlayModule.swift */,
+				97AF796B26D8E9B30048BBA2 /* HowToPlayPresenter.swift */,
+				97AF796D26D8E9C30048BBA2 /* HowToPlayState.swift */,
+				97AF796F26D8E9D40048BBA2 /* HowToPlayViewController.swift */,
+			);
+			path = HowToPlayModule;
+			sourceTree = "<group>";
+		};
+		97AF796026D8E9230048BBA2 /* StoreViewModule */ = {
+			isa = PBXGroup;
+			children = (
+				97AF797126D8E9E40048BBA2 /* StoreModule.swift */,
+				97AF797326D8E9F40048BBA2 /* StorePresenter.swift */,
+				97AF797526D8EA050048BBA2 /* StoreState.swift */,
+				97AF797726D8EA130048BBA2 /* StoreViewController.swift */,
+			);
+			path = StoreViewModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,6 +248,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9746916D26DCB35000FB66BF /* Oswald-Regular.ttf in Resources */,
+				97AF797926D8F03D0048BBA2 /* Botanica.otf in Resources */,
 				979CFF5826D8992D00D9F63C /* LaunchScreen.storyboard in Resources */,
 				979CFF5526D8992D00D9F63C /* Assets.xcassets in Resources */,
 			);
@@ -225,14 +301,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97AF797826D8EA130048BBA2 /* StoreViewController.swift in Sources */,
 				979CFF6A26D8A87100D9F63C /* MenuModule.swift in Sources */,
-				979CFF5026D8992A00D9F63C /* ViewController.swift in Sources */,
+				97AF796E26D8E9C30048BBA2 /* HowToPlayState.swift in Sources */,
 				979CFF6826D8A87100D9F63C /* MenuState.swift in Sources */,
 				979CFF6126D89CCF00D9F63C /* MainCoordinator.swift in Sources */,
+				97AF796226D8E9640048BBA2 /* GameModule.swift in Sources */,
+				97AF796C26D8E9B30048BBA2 /* HowToPlayPresenter.swift in Sources */,
+				97AF796826D8E98C0048BBA2 /* GameViewController.swift in Sources */,
+				97AF795C26D8BF4B0048BBA2 /* UIView+Sugar.swift in Sources */,
+				97AF797226D8E9E40048BBA2 /* StoreModule.swift in Sources */,
 				979CFF6926D8A87100D9F63C /* MenuViewController.swift in Sources */,
+				97AF797626D8EA050048BBA2 /* StoreState.swift in Sources */,
 				979CFF6B26D8A87100D9F63C /* MenuPresenter.swift in Sources */,
 				979CFF4C26D8992A00D9F63C /* AppDelegate.swift in Sources */,
+				97AF796426D8E9730048BBA2 /* GamePresenter.swift in Sources */,
+				97AF796A26D8E9A20048BBA2 /* HowToPlayModule.swift in Sources */,
+				97AF797426D8E9F40048BBA2 /* StorePresenter.swift in Sources */,
 				979CFF4E26D8992A00D9F63C /* SceneDelegate.swift in Sources */,
+				97AF797026D8E9D40048BBA2 /* HowToPlayViewController.swift in Sources */,
+				97AF796626D8E97F0048BBA2 /* GameState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
