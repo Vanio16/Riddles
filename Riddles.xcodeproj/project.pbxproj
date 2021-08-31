@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9746916D26DCB35000FB66BF /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9746916C26DCB31D00FB66BF /* Oswald-Regular.ttf */; };
 		979CFF4C26D8992A00D9F63C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979CFF4B26D8992A00D9F63C /* AppDelegate.swift */; };
 		979CFF4E26D8992A00D9F63C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979CFF4D26D8992A00D9F63C /* SceneDelegate.swift */; };
 		979CFF5526D8992D00D9F63C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 979CFF5426D8992D00D9F63C /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9746916C26DCB31D00FB66BF /* Oswald-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Regular.ttf"; sourceTree = "<group>"; };
 		979CFF4826D8992A00D9F63C /* Riddles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Riddles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		979CFF4B26D8992A00D9F63C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		979CFF4D26D8992A00D9F63C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,10 +97,11 @@
 			isa = PBXGroup;
 			children = (
 				97AF795A26D8BF080048BBA2 /* Extensions */,
-				979CFF6226D89F6E00D9F63C /* ViewControllers */,
+				979CFF6226D89F6E00D9F63C /* Modules */,
 				979CFF5F26D89C8500D9F63C /* Coordinators */,
 				979CFF4B26D8992A00D9F63C /* AppDelegate.swift */,
 				97AF795D26D8E07D0048BBA2 /* Botanica.otf */,
+				9746916C26DCB31D00FB66BF /* Oswald-Regular.ttf */,
 				979CFF4D26D8992A00D9F63C /* SceneDelegate.swift */,
 				979CFF5426D8992D00D9F63C /* Assets.xcassets */,
 				979CFF5626D8992D00D9F63C /* LaunchScreen.storyboard */,
@@ -115,18 +118,18 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
-		979CFF6226D89F6E00D9F63C /* ViewControllers */ = {
+		979CFF6226D89F6E00D9F63C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				97AF796026D8E9230048BBA2 /* StoreViewController */,
-				97AF795F26D8E9120048BBA2 /* HowToPlayViewController */,
-				97AF795E26D8E8F20048BBA2 /* GameViewController */,
-				979CFF6326D8A83500D9F63C /* MenuViewController */,
+				97AF796026D8E9230048BBA2 /* StoreViewModule */,
+				97AF795F26D8E9120048BBA2 /* HowToPlayModule */,
+				97AF795E26D8E8F20048BBA2 /* GameModule */,
+				979CFF6326D8A83500D9F63C /* MenuModule */,
 			);
-			path = ViewControllers;
+			path = Modules;
 			sourceTree = "<group>";
 		};
-		979CFF6326D8A83500D9F63C /* MenuViewController */ = {
+		979CFF6326D8A83500D9F63C /* MenuModule */ = {
 			isa = PBXGroup;
 			children = (
 				979CFF6626D8A87100D9F63C /* MenuModule.swift */,
@@ -134,7 +137,7 @@
 				979CFF6426D8A87100D9F63C /* MenuState.swift */,
 				979CFF6526D8A87100D9F63C /* MenuViewController.swift */,
 			);
-			path = MenuViewController;
+			path = MenuModule;
 			sourceTree = "<group>";
 		};
 		979CFF6D26D8A9FE00D9F63C /* Frameworks */ = {
@@ -153,7 +156,7 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		97AF795E26D8E8F20048BBA2 /* GameViewController */ = {
+		97AF795E26D8E8F20048BBA2 /* GameModule */ = {
 			isa = PBXGroup;
 			children = (
 				97AF796126D8E9640048BBA2 /* GameModule.swift */,
@@ -161,10 +164,10 @@
 				97AF796526D8E97F0048BBA2 /* GameState.swift */,
 				97AF796726D8E98C0048BBA2 /* GameViewController.swift */,
 			);
-			path = GameViewController;
+			path = GameModule;
 			sourceTree = "<group>";
 		};
-		97AF795F26D8E9120048BBA2 /* HowToPlayViewController */ = {
+		97AF795F26D8E9120048BBA2 /* HowToPlayModule */ = {
 			isa = PBXGroup;
 			children = (
 				97AF796926D8E9A20048BBA2 /* HowToPlayModule.swift */,
@@ -172,10 +175,10 @@
 				97AF796D26D8E9C30048BBA2 /* HowToPlayState.swift */,
 				97AF796F26D8E9D40048BBA2 /* HowToPlayViewController.swift */,
 			);
-			path = HowToPlayViewController;
+			path = HowToPlayModule;
 			sourceTree = "<group>";
 		};
-		97AF796026D8E9230048BBA2 /* StoreViewController */ = {
+		97AF796026D8E9230048BBA2 /* StoreViewModule */ = {
 			isa = PBXGroup;
 			children = (
 				97AF797126D8E9E40048BBA2 /* StoreModule.swift */,
@@ -183,7 +186,7 @@
 				97AF797526D8EA050048BBA2 /* StoreState.swift */,
 				97AF797726D8EA130048BBA2 /* StoreViewController.swift */,
 			);
-			path = StoreViewController;
+			path = StoreViewModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9746916D26DCB35000FB66BF /* Oswald-Regular.ttf in Resources */,
 				97AF797926D8F03D0048BBA2 /* Botanica.otf in Resources */,
 				979CFF5826D8992D00D9F63C /* LaunchScreen.storyboard in Resources */,
 				979CFF5526D8992D00D9F63C /* Assets.xcassets in Resources */,

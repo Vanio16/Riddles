@@ -12,7 +12,7 @@ final class MenuPresenter {
     weak var view: MenuViewController?
     weak var output: MenuModuleOutput? {
         didSet {
-            
+
         }
     }
     init(state: MenuState) {
@@ -22,18 +22,16 @@ final class MenuPresenter {
 
 extension MenuPresenter: MenuViewOutput {
     func showGameScreen() {
-        output?.showGameScreen()
+        output?.menuModuleGameModuleShow(self)
     }
-    
-    func showHowToPlayScreen() {
-        
-    }
-    
-    func showStoreScreen() {
-        
-    }
-    
 
+    func showHowToPlayScreen() {
+        output?.menuModuleHowToPlayModuleShow(self)
+    }
+
+    func showStoreScreen() {
+        output?.menuModuleStoreModuleShow(self)
+    }
 }
 
 extension MenuPresenter: MenuModuleInput {

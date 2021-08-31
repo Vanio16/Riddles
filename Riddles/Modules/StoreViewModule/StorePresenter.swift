@@ -17,7 +17,9 @@ final class StorePresenter {
 }
 
 extension StorePresenter: StoreViewOutput {
-
+    func showMenuScreen() {
+        output?.storeModuleMenuModuleShow(self)
+    }
 }
 
 extension StorePresenter: StoreModuleInput {

@@ -17,7 +17,9 @@ final class HowToPlayPresenter {
 }
 
 extension HowToPlayPresenter: HowToPlayViewOutput {
-
+    func showMenuScreen() {
+        output?.howToPlayModuleMenuModuleShow(self)
+    }
 }
 
 extension HowToPlayPresenter: HowToPlayModuleInput {

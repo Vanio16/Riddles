@@ -59,12 +59,14 @@ final class MenuViewController: UIViewController {
         let button = UIButton()
         let image = UIImage(named: "howtoplayButton")
         button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(showHowToPlayScreen), for: .touchUpInside)
         return button
     }()
     private let storeButton: UIButton = {
        let button = UIButton()
         let image = UIImage(named: "storeButton")
         button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(showStoreScreen), for: .touchUpInside)
         return button
     }()
 
@@ -126,8 +128,16 @@ final class MenuViewController: UIViewController {
                 .left(inset: Constants.storeButtonSidesInset)
         }
     }
-    
+
     @objc private func showGameScreen() {
         output.showGameScreen()
+    }
+
+    @objc private func showHowToPlayScreen() {
+        output.showHowToPlayScreen()
+    }
+
+    @objc private func showStoreScreen() {
+        output.showStoreScreen()
     }
 }

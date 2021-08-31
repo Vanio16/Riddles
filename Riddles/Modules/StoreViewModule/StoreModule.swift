@@ -12,7 +12,7 @@ protocol StoreModuleInput: AnyObject {
 }
 
 protocol StoreModuleOutput: AnyObject {
-
+    func storeModuleMenuModuleShow(_ moduleInput: StoreModuleInput)
 }
 
 final class StoreModule {

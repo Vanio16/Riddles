@@ -12,7 +12,7 @@ protocol HowToPlayModuleInput: AnyObject {
 }
 
 protocol HowToPlayModuleOutput: AnyObject {
-
+    func howToPlayModuleMenuModuleShow(_ moduleInput: HowToPlayModuleInput)
 }
 
 final class HowToPlayModule {

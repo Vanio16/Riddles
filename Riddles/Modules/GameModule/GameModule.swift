@@ -12,7 +12,7 @@ protocol GameModuleInput: AnyObject {
 }
 
 protocol GameModuleOutput: AnyObject {
-
+func gameModuleMenuModuleShow(_ moduleInput: GameModuleInput)
 }
 
 final class GameModule {

@@ -10,11 +10,15 @@ import UIKit
 import Framezilla
 
 protocol StoreViewOutput {
+    func showMenuScreen()
 }
 
 final class StoreViewController: UIViewController {
 
     private struct Constants {
+        static let headerImageHeight: CGFloat = 60
+        static let backButtonInsetLeft: CGFloat = 10
+        static let backButtonSize: CGSize = .init(width: 40, height: 40)
     }
 
     private let output: StoreViewOutput
@@ -31,6 +35,19 @@ final class StoreViewController: UIViewController {
         image.image = .init(named: "header")
         return image
     }()
+    private let backButton: UIButton = {
+       let button = UIButton()
+        let image = UIImage(named: "backButton")
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(showMenuScreen), for: .touchUpInside)
+        return button
+    }()
+    private let temporaryLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Store Screen"
+        label.textColor = .white
+       return label
+    }()
 
     // MARK: - Lifecycle
 
@@ -45,7 +62,7 @@ final class StoreViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.add(backgroundImage, headerImage)
+        view.add(backgroundImage, headerImage, backButton, temporaryLabel)
     }
 
     // MARK: - Layout
@@ -61,7 +78,19 @@ final class StoreViewController: UIViewController {
             maker.top()
                 .right()
                 .left()
-                .height(60 + view.safeAreaInsets.top)
+                .height(Constants.headerImageHeight + view.safeAreaInsets.top)
         }
+        backButton.configureFrame { maker in
+            maker.centerY(to: headerImage.nui_centerY, offset: 0 - view.safeAreaInsets.top / 2)
+                .size(Constants.backButtonSize)
+                .left(to: view.nui_safeArea.left, inset: Constants.backButtonInsetLeft)
+        }
+        temporaryLabel.configureFrame { maker in
+            maker.centerY().centerX().sizeToFit()
+        }
+    }
+
+    @objc private func showMenuScreen() {
+        output.showMenuScreen()
     }
 }
