@@ -12,6 +12,8 @@ import Framezilla
 protocol GameViewOutput {
     func showMenuScreen()
     func viewDidLoad()
+    func moveLetter(letter: String) -> Bool
+    func removeLetter()
 }
 
 final class GameViewController: UIViewController {
@@ -32,11 +34,13 @@ final class GameViewController: UIViewController {
     }
     private var bottomLetterButtons: [UIButton] = []
     private var topLetterButtons: [UIButton] = []
-    private var answerButtons: [UIButton] = []
+    private var hiddenButtons: [UIButton] = []
+    var answerButtons: [UIButton] = []
     private let output: GameViewOutput
     var letters = ""
+    var answerCount = 0
 
-    // MARK: - Subview
+// MARK: - Subviews
 
     private let backgroundImage: UIImageView = {
         let image = UIImageView()
@@ -88,11 +92,12 @@ final class GameViewController: UIViewController {
         let button = UIButton()
         let image = UIImage(named: "returnButton")
         button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(tapQuestionButton), for: .touchUpInside)
         return button
     }()
     private let answerView = UIView()
 
-    // MARK: - Lifecycle
+// MARK: - Lifecycle
 
     init(output: GameViewOutput) {
         self.output = output
@@ -117,44 +122,26 @@ final class GameViewController: UIViewController {
                  taskLabel,
                  returnLetterButton,
                  answerView)
-        for _ in 0...6 {
-            let button = UIButton()
-            let image = UIImage(named: "letterButton")
-            button.setBackgroundImage(image, for: .normal)
-            button.setTitle(String(letters.first ?? "A"), for: .normal)
-            letters.removeFirst()
-            button.setTitleColor(.black, for: .normal)
-            view.add(button)
-            bottomLetterButtons.append(button)
-        }
-        for _ in 0...7 {
-            let button = UIButton()
-            let image = UIImage(named: "letterButton")
-            button.setBackgroundImage(image, for: .normal)
-            button.setTitle(String(letters.first ?? "A"), for: .normal)
-            letters.removeFirst()
-            button.setTitleColor(.black, for: .normal)
-            view.add(button)
-            topLetterButtons.append(button)
-        }
-        for _ in "one" {
+        createLetterButtons()
+        for _ in 0..<answerCount {
             let button = UIButton()
             let image = UIImage(named: "inputButton")
-            button.setBackgroundImage(image, for: .normal)
-            button.setTitleColor(.black, for: .normal)
+            button.setBackgroundImage(image, for: .disabled)
+            button.setTitleColor(.black, for: .disabled)
+            button.isEnabled = false
             answerView.add(button)
             answerButtons.append(button)
         }
     }
 
-    // MARK: - Layout
+// MARK: - Layout
 
     override func viewDidLayoutSubviews() {
         backgroundImage.configureFrame { maker in
             maker.top()
-                .bottom()
                 .right()
                 .left()
+                .bottom()
         }
         headerImage.configureFrame { maker in
             maker.top()
@@ -183,15 +170,12 @@ final class GameViewController: UIViewController {
                 .sizeToFit()
         }
         taskLabel.configureFrame { maker in
-            maker.centerX().centerY().sizeToFit()
+            maker.center().sizeToFit()
         }
         layoutLetterButtons()
         layoutAnswerField()
     }
 
-    @objc private func showMenuScreen() {
-        output.showMenuScreen()
-    }
     private func layoutLetterButtons() {
         for (number, button) in bottomLetterButtons.enumerated() {
             button.configureFrame { maker in
@@ -254,5 +238,54 @@ final class GameViewController: UIViewController {
                             Constants.answerButtonsInsetBetweenButtons * CGFloat(number))
             }
         }
+    }
+
+// MARK: - Actions
+
+    private func createLetterButtons() {
+        for _ in 0...6 {
+            let button = UIButton()
+            let image = UIImage(named: "letterButton")
+            button.setBackgroundImage(image, for: .normal)
+            button.setTitle(String(letters.first ?? "A"), for: .normal)
+            letters.removeFirst()
+            button.setTitleColor(.black, for: .normal)
+            button.addTarget(self, action: #selector(tapLetterButton), for: .touchUpInside)
+            view.add(button)
+            bottomLetterButtons.append(button)
+        }
+        for number in 0...7 {
+            let button = UIButton()
+            let image = UIImage(named: "letterButton")
+            button.setBackgroundImage(image, for: .normal)
+            button.setTitle(String(letters.first ?? "A"), for: .normal)
+            letters.removeFirst()
+            button.setTitleColor(.black, for: .normal)
+            button.addTarget(self, action: #selector(tapLetterButton), for: .touchUpInside)
+            if number == 7 {
+                // button.addTarget(self, action: #selector(tapQuestionButton), for: .touchUpInside)
+            }
+            view.add(button)
+            topLetterButtons.append(button)
+        }
+    }
+    @objc private func showMenuScreen() {
+        output.showMenuScreen()
+    }
+    @objc private func tapLetterButton(sender: UIButton!) {
+        guard let letter = sender.title(for: .normal) else {
+            return
+        }
+        sender.isHidden = output.moveLetter(letter: letter)
+        hiddenButtons.append(sender)
+
+    }
+    @objc private func tapQuestionButton() {
+        guard hiddenButtons.count != 0 else {
+            return
+        }
+        output.removeLetter()
+        hiddenButtons.last?.isHidden = false
+        hiddenButtons.removeLast()
     }
 }

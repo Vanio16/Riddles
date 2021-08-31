@@ -26,11 +26,12 @@ final class MenuViewController: UIViewController {
         static let howToPlayButtonSidesInset: CGFloat = 45
         static let storeButtonHeight: CGFloat = 60
         static let storeButtonSidesInset: CGFloat = 45
+        static let headerImageHeight: CGFloat = 60
     }
 
     private let output: MenuViewOutput
 
-// MARK: - Subview
+// MARK: - Subviews
 
     private let backgroundImage: UIImageView = {
         let image = UIImageView()
@@ -91,15 +92,15 @@ final class MenuViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         backgroundImage.configureFrame { maker in
             maker.top()
-                .bottom()
                 .right()
                 .left()
+                .bottom()
         }
         headerImage.configureFrame { maker in
             maker.top()
                 .right()
                 .left()
-                .height(60 + view.safeAreaInsets.top)
+                .height(Constants.headerImageHeight + view.safeAreaInsets.top)
         }
         headerLabel.configureFrame { maker in
             maker.top(to: view.nui_safeArea.top)

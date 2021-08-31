@@ -23,7 +23,7 @@ final class StoreViewController: UIViewController {
 
     private let output: StoreViewOutput
 
-// MARK: - Subview
+// MARK: - Subviews
 
     let backgroundImage: UIImageView = {
         let image = UIImageView()
@@ -70,9 +70,9 @@ final class StoreViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         backgroundImage.configureFrame { maker in
             maker.top()
-                .bottom()
                 .right()
                 .left()
+                .bottom()
         }
         headerImage.configureFrame { maker in
             maker.top()
@@ -81,12 +81,12 @@ final class StoreViewController: UIViewController {
                 .height(Constants.headerImageHeight + view.safeAreaInsets.top)
         }
         backButton.configureFrame { maker in
-            maker.centerY(to: headerImage.nui_centerY, offset: 0 - view.safeAreaInsets.top / 2)
+            maker.centerY(to: headerImage.nui_centerY, offset: -view.safeAreaInsets.top / 2)
                 .size(Constants.backButtonSize)
                 .left(to: view.nui_safeArea.left, inset: Constants.backButtonInsetLeft)
         }
         temporaryLabel.configureFrame { maker in
-            maker.centerY().centerX().sizeToFit()
+            maker.center().sizeToFit()
         }
     }
 

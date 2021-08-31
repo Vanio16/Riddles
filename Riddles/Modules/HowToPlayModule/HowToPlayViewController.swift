@@ -23,7 +23,7 @@ final class HowToPlayViewController: UIViewController {
 
     private let output: HowToPlayViewOutput
 
-// MARK: - Subview
+// MARK: - Subviews
 
     let backgroundImage: UIImageView = {
         let image = UIImageView()
@@ -70,9 +70,9 @@ final class HowToPlayViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         backgroundImage.configureFrame { maker in
             maker.top()
-                .bottom()
                 .right()
                 .left()
+                .bottom()
         }
         headerImage.configureFrame { maker in
             maker.top()
@@ -86,7 +86,7 @@ final class HowToPlayViewController: UIViewController {
                 .left(to: view.nui_safeArea.left, inset: Constants.backButtonInsetLeft)
         }
         temporaryLabel.configureFrame { maker in
-            maker.centerY().centerX().sizeToFit()
+            maker.center().sizeToFit()
         }
     }
 

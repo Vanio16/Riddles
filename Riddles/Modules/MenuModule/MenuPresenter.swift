@@ -10,11 +10,7 @@ import Foundation
 final class MenuPresenter {
 
     weak var view: MenuViewController?
-    weak var output: MenuModuleOutput? {
-        didSet {
-
-        }
-    }
+    weak var output: MenuModuleOutput?
     init(state: MenuState) {
 
     }
