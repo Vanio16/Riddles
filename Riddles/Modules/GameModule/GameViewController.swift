@@ -281,7 +281,7 @@ final class GameViewController: UIViewController {
 
     }
     @objc private func tapQuestionButton() {
-        guard hiddenButtons.count != 0 else {
+        guard !hiddenButtons.isEmpty else {
             return
         }
         output.removeLetter()
