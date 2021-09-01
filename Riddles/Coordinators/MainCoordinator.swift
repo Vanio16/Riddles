@@ -13,9 +13,10 @@ final class MainCoordinator: MenuModuleOutput, GameModuleOutput, HowToPlayModule
     let window: UIWindow
     var navigationController: UINavigationController
     let menuModule = MenuModule()
-    let gameModule = GameModule()
+    var gameModule: GameModule?
     let howToPlayModule = HowToPlayModule()
     let storeModule = StoreModule()
+    let levelService = LevelService()
 
     init(window: UIWindow) {
         self.window = window
@@ -25,7 +26,6 @@ final class MainCoordinator: MenuModuleOutput, GameModuleOutput, HowToPlayModule
 
     func start() {
         menuModule.output = self
-        gameModule.output = self
         howToPlayModule.output = self
         storeModule.output = self
         window.rootViewController = navigationController
@@ -33,6 +33,12 @@ final class MainCoordinator: MenuModuleOutput, GameModuleOutput, HowToPlayModule
     }
 
     func menuModuleGameModuleShow(_ moduleInput: MenuModuleInput) {
+        guard let levels = levelService.loadJson(filename: "Levels") else {
+            return
+        }
+        let gameModule = GameModule(state: .init(levels: levels))
+        self.gameModule = gameModule
+        gameModule.output = self
         navigationController.pushViewController(gameModule.viewController, animated: true)
     }
 

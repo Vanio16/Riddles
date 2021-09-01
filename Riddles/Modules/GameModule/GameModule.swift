@@ -31,7 +31,7 @@ final class GameModule {
     let viewController: GameViewController
     private let presenter: GamePresenter
 
-    init(state: GameState = .init()) {
+    init(state: GameState) {
         let presenter = GamePresenter(state: state)
         let viewController = GameViewController(output: presenter)
         presenter.view = viewController

@@ -1,0 +1,19 @@
+{
+  "levels":[
+     {
+       "name": "Level 1",
+       "answer": "two",
+       "task": "1 + 1"
+     },
+     {
+         "name": "Level 2",
+         "answer": "three",
+         "task": "2 + 1"
+     },
+     {
+         "name": "Level 3",
+         "answer": "four",
+         "task": "2 + 2"
+     }
+  ]
+}

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9746916D26DCB35000FB66BF /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9746916C26DCB31D00FB66BF /* Oswald-Regular.ttf */; };
 		977DFE1D26DF2D8500689BE3 /* String+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977DFE1C26DF2D8500689BE3 /* String+Index.swift */; };
+		977DFE1F26DF398A00689BE3 /* Levels.json in Resources */ = {isa = PBXBuildFile; fileRef = 977DFE1E26DF398A00689BE3 /* Levels.json */; };
+		977DFE2126DF3A3500689BE3 /* LevelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977DFE2026DF3A3500689BE3 /* LevelService.swift */; };
 		979CFF4C26D8992A00D9F63C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979CFF4B26D8992A00D9F63C /* AppDelegate.swift */; };
 		979CFF4E26D8992A00D9F63C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979CFF4D26D8992A00D9F63C /* SceneDelegate.swift */; };
 		979CFF5526D8992D00D9F63C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 979CFF5426D8992D00D9F63C /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 /* Begin PBXFileReference section */
 		9746916C26DCB31D00FB66BF /* Oswald-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Regular.ttf"; sourceTree = "<group>"; };
 		977DFE1C26DF2D8500689BE3 /* String+Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Index.swift"; sourceTree = "<group>"; };
+		977DFE1E26DF398A00689BE3 /* Levels.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Levels.json; sourceTree = SOURCE_ROOT; };
+		977DFE2026DF3A3500689BE3 /* LevelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelService.swift; sourceTree = "<group>"; };
 		979CFF4826D8992A00D9F63C /* Riddles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Riddles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		979CFF4B26D8992A00D9F63C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		979CFF4D26D8992A00D9F63C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,11 +107,13 @@
 				979CFF5F26D89C8500D9F63C /* Coordinators */,
 				979CFF4B26D8992A00D9F63C /* AppDelegate.swift */,
 				97AF795D26D8E07D0048BBA2 /* Botanica.otf */,
+				977DFE1E26DF398A00689BE3 /* Levels.json */,
 				9746916C26DCB31D00FB66BF /* Oswald-Regular.ttf */,
 				979CFF4D26D8992A00D9F63C /* SceneDelegate.swift */,
 				979CFF5426D8992D00D9F63C /* Assets.xcassets */,
 				979CFF5626D8992D00D9F63C /* LaunchScreen.storyboard */,
 				979CFF5926D8992D00D9F63C /* Info.plist */,
+				977DFE2026DF3A3500689BE3 /* LevelService.swift */,
 			);
 			path = Riddles;
 			sourceTree = "<group>";
@@ -252,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9746916D26DCB35000FB66BF /* Oswald-Regular.ttf in Resources */,
+				977DFE1F26DF398A00689BE3 /* Levels.json in Resources */,
 				97AF797926D8F03D0048BBA2 /* Botanica.otf in Resources */,
 				979CFF5826D8992D00D9F63C /* LaunchScreen.storyboard in Resources */,
 				979CFF5526D8992D00D9F63C /* Assets.xcassets in Resources */,
@@ -322,6 +329,7 @@
 				97AF796A26D8E9A20048BBA2 /* HowToPlayModule.swift in Sources */,
 				97AF797426D8E9F40048BBA2 /* StorePresenter.swift in Sources */,
 				979CFF4E26D8992A00D9F63C /* SceneDelegate.swift in Sources */,
+				977DFE2126DF3A3500689BE3 /* LevelService.swift in Sources */,
 				97AF797026D8E9D40048BBA2 /* HowToPlayViewController.swift in Sources */,
 				97AF796626D8E97F0048BBA2 /* GameState.swift in Sources */,
 				977DFE1D26DF2D8500689BE3 /* String+Index.swift in Sources */,
