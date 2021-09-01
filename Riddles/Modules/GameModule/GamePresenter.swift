@@ -79,8 +79,4 @@ extension GamePresenter: GameViewOutput {
 
 extension GamePresenter: GameModuleInput {
 }
-extension String {
-    func getSymbol(byIndex index: Int) -> String {
-        String(self[self.index(self.startIndex, offsetBy: index)])
-    }
-}
+

@@ -98,7 +98,7 @@ final class GameViewController: UIViewController {
         let button = UIButton()
         let image = UIImage(named: "returnButton")
         button.setImage(image, for: .normal)
-        button.addTarget(self, action: #selector(tapArrowButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tapUndoButton), for: .touchUpInside)
         return button
     }()
     private let answerView = UIView()
@@ -213,6 +213,35 @@ final class GameViewController: UIViewController {
         layoutAnswerField()
         layoutHelpField()
     }
+    private func createLetterButtons() {
+        for _ in 0...6 {
+            let button = UIButton()
+            let image = UIImage(named: "letterButton")
+            button.setBackgroundImage(image, for: .normal)
+            button.setTitle(String(letters.first ?? "A"), for: .normal)
+            letters.removeFirst()
+            button.setTitleColor(.black, for: .normal)
+            button.addTarget(self, action: #selector(tapLetterButton), for: .touchUpInside)
+            view.add(button)
+            bottomLetterButtons.append(button)
+        }
+        for number in 0...7 {
+            let button = UIButton()
+            let image = UIImage(named: "letterButton")
+            button.setBackgroundImage(image, for: .normal)
+            button.setTitle(String(letters.first ?? "A"), for: .normal)
+            letters.removeFirst()
+            button.setTitleColor(.black, for: .normal)
+            if number == 7 {
+                button.addTarget(self, action: #selector(tapHelpButton), for: .touchUpInside)
+            }
+            else {
+                button.addTarget(self, action: #selector(tapLetterButton), for: .touchUpInside)
+            }
+            view.add(button)
+            topLetterButtons.append(button)
+        }
+    }
     private func layoutHelpField() {
         let width = Constants.helpButtonSize.width + Constants.helpButtonInsets.left + Constants.helpButtonInsets.right
         helpView.configureFrame { maker in
@@ -302,35 +331,6 @@ final class GameViewController: UIViewController {
 
     // MARK: - Actions
 
-    private func createLetterButtons() {
-        for _ in 0...6 {
-            let button = UIButton()
-            let image = UIImage(named: "letterButton")
-            button.setBackgroundImage(image, for: .normal)
-            button.setTitle(String(letters.first ?? "A"), for: .normal)
-            letters.removeFirst()
-            button.setTitleColor(.black, for: .normal)
-            button.addTarget(self, action: #selector(tapLetterButton), for: .touchUpInside)
-            view.add(button)
-            bottomLetterButtons.append(button)
-        }
-        for number in 0...7 {
-            let button = UIButton()
-            let image = UIImage(named: "letterButton")
-            button.setBackgroundImage(image, for: .normal)
-            button.setTitle(String(letters.first ?? "A"), for: .normal)
-            letters.removeFirst()
-            button.setTitleColor(.black, for: .normal)
-            if number == 7 {
-                button.addTarget(self, action: #selector(tapQuestionButton), for: .touchUpInside)
-            }
-            else {
-                button.addTarget(self, action: #selector(tapLetterButton), for: .touchUpInside)
-            }
-            view.add(button)
-            topLetterButtons.append(button)
-        }
-    }
     @objc private func showMenuScreen() {
         output.showMenuScreen()
     }
@@ -342,7 +342,7 @@ final class GameViewController: UIViewController {
         hiddenButtons.append(sender)
 
     }
-    @objc private func tapArrowButton() {
+    @objc private func tapUndoButton() {
         guard !hiddenButtons.isEmpty else {
             return
         }
@@ -350,7 +350,7 @@ final class GameViewController: UIViewController {
         hiddenButtons.last?.isHidden = false
         hiddenButtons.removeLast()
     }
-    @objc private func tapQuestionButton() {
+    @objc private func tapHelpButton() {
         helpView.isHidden = false
         helpLabel.text = output.getHelpLetter()
     }
