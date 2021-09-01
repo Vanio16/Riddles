@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9746916D26DCB35000FB66BF /* Oswald-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9746916C26DCB31D00FB66BF /* Oswald-Regular.ttf */; };
+		977DFE1D26DF2D8500689BE3 /* String+Index.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977DFE1C26DF2D8500689BE3 /* String+Index.swift */; };
 		979CFF4C26D8992A00D9F63C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979CFF4B26D8992A00D9F63C /* AppDelegate.swift */; };
 		979CFF4E26D8992A00D9F63C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979CFF4D26D8992A00D9F63C /* SceneDelegate.swift */; };
 		979CFF5526D8992D00D9F63C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 979CFF5426D8992D00D9F63C /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		9746916C26DCB31D00FB66BF /* Oswald-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Regular.ttf"; sourceTree = "<group>"; };
+		977DFE1C26DF2D8500689BE3 /* String+Index.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Index.swift"; sourceTree = "<group>"; };
 		979CFF4826D8992A00D9F63C /* Riddles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Riddles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		979CFF4B26D8992A00D9F63C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		979CFF4D26D8992A00D9F63C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				97AF795B26D8BF4B0048BBA2 /* UIView+Sugar.swift */,
+				977DFE1C26DF2D8500689BE3 /* String+Index.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				979CFF4E26D8992A00D9F63C /* SceneDelegate.swift in Sources */,
 				97AF797026D8E9D40048BBA2 /* HowToPlayViewController.swift in Sources */,
 				97AF796626D8E97F0048BBA2 /* GameState.swift in Sources */,
+				977DFE1D26DF2D8500689BE3 /* String+Index.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
