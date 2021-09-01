@@ -101,6 +101,7 @@ extension GamePresenter: GameViewOutput {
                 view?.popViewButton.setTitle("Next level", for: .normal)
             }
             view?.popView.isHidden = false
+            view?.backgroundPopView.isHidden = false
             view?.popViewTextLabel.isHidden = false
             view?.coins += 100
             view?.coinsLabel.text = String(view?.coins ?? 0)

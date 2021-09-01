@@ -158,6 +158,13 @@ final class GameViewController: UIViewController {
         return label
     }()
 
+    let backgroundPopView: UIView = {
+       let view = UIView()
+        view.backgroundColor = .black.withAlphaComponent(0.3)
+        view.isHidden = true
+        return view
+    }()
+
     // MARK: - Lifecycle
 
     init(output: GameViewOutput) {
@@ -172,6 +179,7 @@ final class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         popView.add(popViewLabel, popViewHeaderLabel, popViewButton, popViewTextLabel)
+        backgroundPopView.add(popView)
         view.add(backgroundImage,
                  headerImage,
                  backButton,
@@ -181,9 +189,9 @@ final class GameViewController: UIViewController {
                  backgroundAnswerImage,
                  taskLabel,
                  returnLetterButton,
-                 answerView,
-                 popView)
+                 answerView)
         output.viewDidLoad()
+        view.add(backgroundPopView)
     }
 
     // MARK: - Layout
@@ -280,6 +288,12 @@ final class GameViewController: UIViewController {
     }
 
     private func layoutPopField() {
+        backgroundPopView.configureFrame { maker in
+            maker.top()
+                .bottom()
+                .left()
+                .right()
+        }
         let width = Constants.helpButtonSize.width + Constants.helpButtonInsets.left + Constants.helpButtonInsets.right
         popView.configureFrame { maker in
             maker.center()
@@ -412,11 +426,13 @@ final class GameViewController: UIViewController {
 
     @objc private func tapHelpButton() {
         popView.isHidden = false
+        backgroundPopView.isHidden = false
         popViewLabel.text = output.getHelpLetter()
     }
 
     @objc func hidePopView() {
         popView.isHidden = true
+        backgroundPopView.isHidden = true
     }
 
     @objc func tapNextLevelButton() {
@@ -441,6 +457,8 @@ final class GameViewController: UIViewController {
         layoutLetterButtons()
         createAnswerButtons()
         layoutAnswerField()
+        backgroundPopView.removeFromSuperview()
+        view.add(backgroundPopView)
         popViewButton.removeTarget(self, action: #selector(tapNextLevelButton), for: .touchUpInside)
         popViewButton.addTarget(self, action: #selector(hidePopView), for: .touchUpInside)
         popViewButton.setTitle("OK", for: .normal)
