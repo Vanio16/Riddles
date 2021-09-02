@@ -12,7 +12,7 @@ import Framezilla
 protocol GameViewOutput {
     func showMenuScreen()
     func viewDidLoad()
-    func moveLetter(letter: String) -> Bool
+    func moveLetter(letter: String) -> Int?
     func removeLetter()
     func getHelpLetter() -> String
     func changeLevel()
@@ -28,7 +28,7 @@ final class GameViewController: UIViewController {
         static let backgroundCoinsImageInsetRight: CGFloat = 10
         static let backgroundAnswerImageHeight: CGFloat = 90
         static let backgroundAnswerImageInsetBot: CGFloat = 40
-        static let letterButtonsSize: CGSize = .init(width: 36, height: 36)
+        static let letterButtonsSize: CGSize = .init(width: 40, height: 40)
         static let letterButtonsInsetLeft: CGFloat = 10
         static let letterButtonsInsetBot: CGFloat = 10
         static let answerButtonsInsetBetweenButtons: CGFloat = 10
@@ -41,7 +41,7 @@ final class GameViewController: UIViewController {
     }
     private var bottomLetterButtons: [UIButton] = []
     private var topLetterButtons: [UIButton] = []
-    private var hiddenButtons: [UIButton] = []
+    private var movedButtons: [LetterButton] = []
     var answerButtons: [UIButton] = []
     private let output: GameViewOutput
     var letters = ""
@@ -117,7 +117,6 @@ final class GameViewController: UIViewController {
     let popView: UIView = {
         let view = UIView()
         view.backgroundColor = .darkGray
-        view.isHidden = true
         view.layer.cornerRadius = 15
         return view
     }()
@@ -159,7 +158,7 @@ final class GameViewController: UIViewController {
     }()
 
     let backgroundPopView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = .black.withAlphaComponent(0.3)
         view.isHidden = true
         return view
@@ -242,6 +241,9 @@ final class GameViewController: UIViewController {
         layoutLetterButtons()
         layoutAnswerField()
         layoutPopField()
+        bottomLetterButtons.forEach { bottomLetterButton in
+            bottomLetterButton.superview?.bringSubviewToFront(bottomLetterButton)
+        }
     }
 
     private func createLetterButtons() {
@@ -294,9 +296,11 @@ final class GameViewController: UIViewController {
                 .left()
                 .right()
         }
+
         let width = Constants.helpButtonSize.width + Constants.helpButtonInsets.left + Constants.helpButtonInsets.right
         popView.configureFrame { maker in
-            maker.center()
+            maker.top(to: view.nui_bottom)
+                .centerX()
                 .size(width: width, height: Constants.helpViewHeight)
         }
 
@@ -407,32 +411,53 @@ final class GameViewController: UIViewController {
     }
 
     @objc private func tapLetterButton(sender: UIButton!) {
-        guard let letter = sender.title(for: .normal), hiddenButtons.count != answerCount else {
+        guard let letter = sender.title(for: .normal), movedButtons.count != answerCount else {
             return
         }
-        sender.isHidden = output.moveLetter(letter: letter)
-        hiddenButtons.append(sender)
-
+        if let index = output.moveLetter(letter: letter) {
+            let button = LetterButton(button: sender, oldOrigin: sender.frame.origin)
+            movedButtons.append(button)
+            UIView.animate(withDuration: 1.0, animations: {
+                sender.configureFrame { maker in
+                    maker.top(to: self.answerView.nui_top)
+                        .left(to: self.answerButtons[index].nui_left)
+                }
+            })
+        }
+        else {
+        }
     }
 
     @objc private func tapUndoButton() {
-        guard !hiddenButtons.isEmpty else {
+        guard !movedButtons.isEmpty else {
             return
         }
         output.removeLetter()
-        hiddenButtons.last?.isHidden = false
-        hiddenButtons.removeLast()
+        UIView.animate(withDuration: 1.0, animations: {
+            self.movedButtons.last?.button.frame.origin = self.movedButtons.last?.oldOrigin ?? CGPoint(x: 0, y: 0)
+        })
+        movedButtons.removeLast()
     }
 
     @objc private func tapHelpButton() {
-        popView.isHidden = false
         backgroundPopView.isHidden = false
         popViewLabel.text = output.getHelpLetter()
+        UIView.animate(withDuration: 1.0, animations: {
+            self.popView.configureFrame { maker in
+                maker.center()
+            }
+            self.backgroundPopView.alpha = 1
+        })
     }
 
     @objc func hidePopView() {
-        popView.isHidden = true
-        backgroundPopView.isHidden = true
+        UIView.animate(withDuration: 1.0, animations: {
+            self.popView.configureFrame { maker in
+                maker.top(to: self.view.nui_bottom)
+                    .centerX()
+                self.backgroundPopView.alpha = 0
+            }
+        })
     }
 
     @objc func tapNextLevelButton() {
@@ -452,20 +477,30 @@ final class GameViewController: UIViewController {
             answerButton.removeFromSuperview()
         }
         answerButtons = []
-        hiddenButtons = []
+        movedButtons = []
         createLetterButtons()
         layoutLetterButtons()
         createAnswerButtons()
         layoutAnswerField()
         backgroundPopView.removeFromSuperview()
-        view.add(backgroundPopView)
         popViewButton.removeTarget(self, action: #selector(tapNextLevelButton), for: .touchUpInside)
         popViewButton.addTarget(self, action: #selector(hidePopView), for: .touchUpInside)
         popViewButton.setTitle("OK", for: .normal)
         popViewHeaderLabel.text = "Help"
-        popView.isHidden = true
         popViewTextLabel.isHidden = true
+        view.add(backgroundPopView)
+        backgroundPopView.isHidden = true
         levelNumberLabel.text = level.name
         taskLabel.text = level.task
+    }
+    
+   final class LetterButton {
+        var button: UIButton
+        var oldOrigin: CGPoint
+
+        init(button: UIButton, oldOrigin: CGPoint) {
+            self.button = button
+            self.oldOrigin = oldOrigin
+        }
     }
 }
