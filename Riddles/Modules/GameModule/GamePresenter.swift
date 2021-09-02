@@ -35,6 +35,30 @@ final class GamePresenter {
         }
         return randomLetters
     }
+    private func showPopupIfNeeded() {
+        if state.currentAnswer == state.levels[state.currentLevelIndex].answer {
+            view?.popViewHeaderLabel.text = "Level Completed"
+            view?.popViewLabel.text = state.levels[state.currentLevelIndex].answer
+            view?.popViewButton.removeTarget(view, action: #selector(view?.hidePopView), for: .touchUpInside)
+            view?.popViewButton.addTarget(view, action: #selector(view?.tapNextLevelButton), for: .touchUpInside)
+            if state.currentLevelIndex == 2 {
+                view?.popViewButton.setTitle("Back to Menu", for: .normal)
+            }
+            else {
+                view?.popViewButton.setTitle("Next level", for: .normal)
+            }
+            view?.popViewTextLabel.isHidden = false
+            view?.coins += 100
+            view?.coinsLabel.text = String(view?.coins ?? 0)
+            view?.backgroundPopView.isHidden = false
+            UIView.animate(withDuration: 1.0, animations: {
+                self.view?.popView.configureFrame { maker in
+                    maker.center()
+                }
+                self.view?.backgroundPopView.alpha = 1
+            })
+        }
+    }
 }
 
 extension GamePresenter: GameViewOutput {
@@ -81,32 +105,16 @@ extension GamePresenter: GameViewOutput {
         view?.answerButtons[state.currentAnswer.count].setBackgroundImage(image, for: .disabled)
     }
 
-    func moveLetter(letter: String) -> Bool {
+    func moveLetter(letter: String) -> Int? {
         guard state.currentAnswer.count != state.levels[state.currentLevelIndex].answer.count else {
-            return false
+            return nil
         }
-        view?.answerButtons[state.currentAnswer.count].setTitle(letter, for: .normal)
-        let image = UIImage(named: "letterButton")
-        view?.answerButtons[state.currentAnswer.count].setBackgroundImage(image, for: .disabled)
+        //        view?.answerButtons[state.currentAnswer.count].setTitle(letter, for: .normal)
+        //        let image = UIImage(named: "letterButton")
+        //        view?.answerButtons[state.currentAnswer.count].setBackgroundImage(image, for: .disabled)
         state.currentAnswer += letter
-        if state.currentAnswer == state.levels[state.currentLevelIndex].answer {
-            view?.popViewHeaderLabel.text = "Level Completed"
-            view?.popViewLabel.text = state.levels[state.currentLevelIndex].answer
-            view?.popViewButton.removeTarget(view, action: #selector(view?.hidePopView), for: .touchUpInside)
-            view?.popViewButton.addTarget(view, action: #selector(view?.tapNextLevelButton), for: .touchUpInside)
-            if state.currentLevelIndex == 2 {
-                view?.popViewButton.setTitle("Back to Menu", for: .normal)
-            }
-            else {
-                view?.popViewButton.setTitle("Next level", for: .normal)
-            }
-            view?.popView.isHidden = false
-            view?.backgroundPopView.isHidden = false
-            view?.popViewTextLabel.isHidden = false
-            view?.coins += 100
-            view?.coinsLabel.text = String(view?.coins ?? 0)
-        }
-        return true
+        showPopupIfNeeded()
+        return state.currentAnswer.count - 1
     }
 
     func viewDidLoad() {
