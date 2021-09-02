@@ -109,9 +109,6 @@ extension GamePresenter: GameViewOutput {
         guard state.currentAnswer.count != state.levels[state.currentLevelIndex].answer.count else {
             return nil
         }
-        //        view?.answerButtons[state.currentAnswer.count].setTitle(letter, for: .normal)
-        //        let image = UIImage(named: "letterButton")
-        //        view?.answerButtons[state.currentAnswer.count].setBackgroundImage(image, for: .disabled)
         state.currentAnswer += letter
         showPopupIfNeeded()
         return state.currentAnswer.count - 1

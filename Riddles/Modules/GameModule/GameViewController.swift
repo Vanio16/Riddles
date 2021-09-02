@@ -410,16 +410,6 @@ final class GameViewController: UIViewController {
         output.showMenuScreen()
     }
 
-    class LetterButton {
-        var button: UIButton
-        var oldOrigin: CGPoint
-
-        init(button: UIButton, oldOrigin: CGPoint) {
-            self.button = button
-            self.oldOrigin = oldOrigin
-        }
-    }
-
     @objc private func tapLetterButton(sender: UIButton!) {
         guard let letter = sender.title(for: .normal), movedButtons.count != answerCount else {
             return
@@ -502,5 +492,15 @@ final class GameViewController: UIViewController {
         backgroundPopView.isHidden = true
         levelNumberLabel.text = level.name
         taskLabel.text = level.task
+    }
+    
+   final class LetterButton {
+        var button: UIButton
+        var oldOrigin: CGPoint
+
+        init(button: UIButton, oldOrigin: CGPoint) {
+            self.button = button
+            self.oldOrigin = oldOrigin
+        }
     }
 }
